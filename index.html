@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TensorFlow.js Audio Prediction</title>
+</head>
+<body>
+<input type="file" id="audioUpload" accept=".wav"/>
+<button onclick="loadAndPredict()">Predict</button>
+<br />
+<div id="predictionOutput"></div>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="app.js"></script>
+</body>
+</html>
