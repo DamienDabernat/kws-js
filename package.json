@@ -1,14 +1,15 @@
 {
-  "name": "kws",
+  "name": "wake-word-demonstration",
   "version": "1.0.0",
-  "description": "",
+  "description": "Demonstration of a wake word using TensorFlow.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["tensorflow", "wake-word"],
+  "author": "Dabernat Damien",
+  "license": "Proprietary",
+  "copyright": "Copyright © 2024 Surpuissant. All rights reserved.",
   "dependencies": {
     "@tensorflow/tfjs": "^4.20.0"
   }
