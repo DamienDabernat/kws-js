@@ -47,10 +47,17 @@ function processAudioBuffer(audioBuffer) {
 
     return offlineContext.startRendering().then(renderedBuffer => {
         let inputData = renderedBuffer.getChannelData(0);
-        inputData = inputData.length > inputLength ? inputData.slice(0, inputLength) : inputData;
+        if (inputData.length > inputLength) {
+            inputData = inputData.slice(0, inputLength);
+        } else if (inputData.length < inputLength) {
+            // Fill the remaining input with zeros if the audio is too short
+            inputData = new Float32Array(inputLength).fill(0, 0, inputLength);
+            inputData.set(renderedBuffer.getChannelData(0));
+        }
         return tf.tensor3d(inputData, [1, inputLength, 1]);
     });
 }
+
 
 /**
  * Handles the TensorFlow model predictions by displaying the most likely prediction in the UI.
@@ -62,8 +69,8 @@ async function handlePrediction(outputTensor) {
         label: label, probability: prediction[index]
     })).sort((a, b) => b.probability - a.probability)[0];
 
-    document.getElementById('predictionOutput').textContent = `Prediction: ${highestPrediction.label} with probability ${highestPrediction.probability.toFixed(2)}`;
     outputTensor.dispose();
+    return { label: highestPrediction.label, probability: highestPrediction.probability };
 }
 
 /**
@@ -78,11 +85,18 @@ async function loadAndPredict() {
     }
 
     try {
+        const startTime = performance.now();
+
         const audioBuffer = await decodeAudioFile(audioFile);
         const inputTensor = await processAudioBuffer(audioBuffer);
         const model = await loadModel();
         const outputTensor = await model.executeAsync(inputTensor);
-        await handlePrediction(outputTensor);
+        const result = await handlePrediction(outputTensor);
+
+        const endTime = performance.now();
+        const inferenceTime = endTime - startTime;
+
+        document.getElementById('predictionOutput').textContent = `Prediction: ${result.label} with probability ${result.probability.toFixed(2)} in ${inferenceTime.toFixed(2)} ms`;
     } catch (error) {
         console.error('Error processing audio file:', error);
     }
