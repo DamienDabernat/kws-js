@@ -11,6 +11,9 @@ Bien que la démonstration actuelle utilise du JavaScript vanille, vous êtes li
 L'outil actuel est simplement un formulaire HTML brut qui permet d'uploader un fichier audio et d'afficher la prédiction.
 Il n'y a pas d'interactivité ni de css pour améliorer l'expérience utilisateur.
 
+- Comment créer une page commeciale de la solution ?
+- Comment créer une page de démonstration pour des clients finaux ?
+
 ## Attendu possible :
 - Proposer une architecture technique qui permet d'ajouter des fonctionnalités supplémentaires à l'outil de classification audio.
 - Intégrer des fonctionnalités permettant l'enregistrement audio direct depuis le navigateur, la transformation de ce dernier en format WAV adéquat, et son analyse en temps réel ou non.
