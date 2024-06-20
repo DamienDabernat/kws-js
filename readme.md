@@ -39,12 +39,17 @@ These steps ensure that the audio data is correctly formatted for the model, tha
 
 ## Running the Project
 
-To use this project, follow these steps:
+To use this project, you must serve the files on a local server. Directly opening the index.html file will not work because the TensorFlow.js model requires http requests to load and run. Follow these steps to set up a local server:
 
-1. Get the project files
-2. Open the index.html file in a browser that supports TensorFlow.js (such as Chrome or Firefox).
-3. Use the file input to upload an audio file (preferably in .wav format). See the samples folder for example audio files.
-4. Click the "Predict" button to see the prediction.
+1. Install a simple server by running `npm install -g serve`
+2. Navigate to your project directory: `cd votre_projet`
+3. Start the server: `serve`
+
+Then, in a browser that supports TensorFlow.js (such as Chrome or Firefox):
+
+- Navigate to `http://localhost:3000`
+- Use the file input to upload an audio file (preferably in .wav format). See the samples folder for example audio files.
+- Click the "Predict" button to see the prediction.
 
 The project's directory should include:
 
